@@ -9,3 +9,7 @@ syntax: glob
 *.pdb
 */Pocket PC 2003 (ARMV4)/*
 *.vcproj.*
+testUI/*
+*.bsc
+*.dll
+*.exp
