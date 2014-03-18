@@ -1,0 +1,5 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/getopt.c////*///
+/getopt1.c////*///
+/getopt_static.dsp////*///

@@ -1,0 +1,16 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/analyze.c////*///
+/analyze.h////*///
+/decode.c////*///
+/decode.h////*///
+/encode.c////*///
+/encode.h////*///
+/flac.dsp////*///
+/local_string_utils.c////*///
+/local_string_utils.h////*///
+/main.c////*///
+/utils.c////*///
+/utils.h////*///
+/vorbiscomment.c////*///
+/vorbiscomment.h////*///

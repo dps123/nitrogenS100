@@ -1,0 +1,243 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DLG_SLEEP DIALOG  0, 0, 125, 51
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sleep mode"
+FONT 8, "Tahoma"
+BEGIN
+    CONTROL         "",SLD_TIME,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,4,15,116,17
+    CONTROL         "Active",CHK_ACTIVE,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,4,32,45,14
+    CTEXT           "30 minutes",LBL_TIME,4,3,116,12
+    DEFPUSHBUTTON   "OK",BTN_OK,70,32,50,14
+END
+
+DLG_SETTINGS DIALOG  0, 0, 158, 164
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "Tahoma"
+BEGIN
+    LTEXT           "Thread priority",LBL_THREADPRIORITY,4,9,77,8
+    COMBOBOX        CBB_THPRIORITY,81,4,74,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Sleep action",LBL_SLEEPACTION,4,24,77,8
+    COMBOBOX        CBB_SLEEP,81,22,74,44,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Prebuffer length",LBL_PBLENGTH,4,45,77,8
+    EDITTEXT        EDT_PBLENGTH,81,42,48,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",UPD_PBLENGTH,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,118,42,11,14
+    LTEXT           "Output prebuffer",LBL_PREBUFFER,4,62,77,8
+    EDITTEXT        EDT_OPREBUFF,81,59,48,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",UPD_OPREBUFF,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,118,59,11,14
+    LTEXT           " ms",-1,129,45,26,8
+    LTEXT           " %",-1,129,62,26,8
+    LTEXT           "Left softkey action",LBL_LSOFT,4,82,77,8
+    COMBOBOX        CBB_LSOFTKEY,81,80,74,66,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",LST_OPTIONS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,4,98,151,62
+END
+
+DLG_ADDPRESET DIALOG  0, 0, 123, 56
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add preset"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Enter the name of the preset",LBL_PRESETNAME,7,7,109,10
+    EDITTEXT        EDT_ADDNAME,7,17,109,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",BTN_ADDOK,66,35,50,14
+END
+
+DLG_FILEASSOC DIALOG  0, 0, 156, 153
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "File associations"
+FONT 8, "Tahoma"
+BEGIN
+    LTEXT           "If the player is not running",LBL_NOTRUNNING,7,93,143,12
+    COMBOBOX        CBB_NOTRUNNING,7,105,143,76,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "If the player is already running",LBL_RUNNING,7,120,143,11
+    COMBOBOX        CBB_RUNNING,7,131,143,46,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Use Nitrogen to open",LBL_USETOOPEN,7,7,143,10
+    CONTROL         "",LST_EXTENSIONS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,17,143,53
+    PUSHBUTTON      "Select none",BTN_SELNONE,79,76,71,14
+    PUSHBUTTON      "Select all",BTN_SELALL,7,76,70,14
+END
+
+DLG_LISTS DIALOG  0, 0, 156, 153
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Lists and browsers"
+FONT 8, "Tahoma"
+BEGIN
+    CONTROL         "Enable kinetic scrolling",CHK_ENABLEHAPTICS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,143,11
+    LTEXT           "Refresh interval",LBL_REFINTERVAL,15,40,65,10
+    EDITTEXT        EDT_REFINTERVAL,80,38,37,14,ES_AUTOHSCROLL
+    CONTROL         "",UPD_REFINTERVAL,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY,106,38,11,14
+    LTEXT           " ms",-1,117,41,29,8
+    LTEXT           "Initial speed",LBL_INITSPEED,15,58,65,8
+    EDITTEXT        EDT_INITSPEED,80,55,37,14,ES_AUTOHSCROLL
+    CONTROL         "",UPD_INITSPEED,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,107,55,10,14
+    LTEXT           " px",-1,117,58,29,8
+    LTEXT           "Deacceleration",LBL_DEACCEL,15,75,65,8
+    EDITTEXT        EDT_DEACCEL,80,72,37,14,ES_AUTOHSCROLL
+    CONTROL         "",UPD_DEACCEL,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,107,72,10,14
+    LTEXT           " px/ms",-1,117,92,29,8
+    CONTROL         "Lower font quality when scrolling",CHK_HAPDRAFT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,139,10
+    LTEXT           "Minimal gesture",LBL_MINGESTURE,15,92,65,8
+    EDITTEXT        EDT_MINGESTURE,80,89,37,14,ES_AUTOHSCROLL
+    CONTROL         "",UPD_MINGESTURE,"msctls_updown32",UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,107,89,10,14
+    LTEXT           " px",-1,117,75,29,8
+    GROUPBOX        "Kinetic scrolling settings",LBL_KINETIC,7,22,143,90
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    DLG_SLEEP, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 120
+        VERTGUIDE, 49
+        VERTGUIDE, 70
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 46
+        HORZGUIDE, 15
+        HORZGUIDE, 32
+        HORZGUIDE, 46
+    END
+
+    DLG_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 155
+        VERTGUIDE, 81
+        VERTGUIDE, 129
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 160
+        HORZGUIDE, 13
+        HORZGUIDE, 28
+        HORZGUIDE, 49
+        HORZGUIDE, 66
+        HORZGUIDE, 86
+        HORZGUIDE, 98
+    END
+
+    DLG_ADDPRESET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        VERTGUIDE, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 49
+        HORZGUIDE, 17
+    END
+
+    DLG_FILEASSOC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 150
+        VERTGUIDE, 77
+        VERTGUIDE, 79
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 146
+        HORZGUIDE, 17
+        HORZGUIDE, 70
+        HORZGUIDE, 76
+        HORZGUIDE, 105
+        HORZGUIDE, 131
+    END
+
+    DLG_LISTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 150
+        VERTGUIDE, 80
+        VERTGUIDE, 117
+        VERTGUIDE, 146
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 146
+        HORZGUIDE, 18
+        HORZGUIDE, 22
+        HORZGUIDE, 45
+        HORZGUIDE, 62
+        HORZGUIDE, 79
+        HORZGUIDE, 96
+        HORZGUIDE, 112
+        HORZGUIDE, 117
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+ICO_MAIN                ICON                    "Icon.ico"
+ICO_SONGFILE            ICON                    "SongFile.ico"
+ICO_SKINFILE            ICON                    "SkinFile.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_OK                  "OK"
+    IDS_CANCEL              "Cancel"
+    IDS_EMPTY               "                    "
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+LANGUAGE 22, 1
+#pragma code_page(1252)
+#include "resource.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

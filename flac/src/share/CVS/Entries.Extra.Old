@@ -1,0 +1,9 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/README////*///
+D/file_utils///////
+D/getopt///////
+D/grabbag///////
+D/replaygain_analysis///////
+D/replaygain_synthesis///////
+D/utf8///////

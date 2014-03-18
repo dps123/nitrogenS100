@@ -1,0 +1,16 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/README////*///
+/all.h////*///
+/charset.c////*///
+/charset.h////*///
+/defs.h////*///
+/dither.c////*///
+/dither.h////*///
+/locale_hack.h////*///
+/plugin_common_static.dsp////*///
+/replaygain.c////*///
+/replaygain.h////*///
+/tags.c////*///
+/tags.h////*///
+D/include///////

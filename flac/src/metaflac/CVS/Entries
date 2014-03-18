@@ -1,0 +1,17 @@
+/Makefile.am/1.20/Sun Jan 30 18:44:47 2005//
+/Makefile.lite/1.22/Tue Jan 25 04:18:38 2005//
+/main.c/1.58/Sat Sep  3 03:54:16 2005//
+/metaflac.dsp/1.10/Wed Dec 17 04:51:07 2003//
+/operations.c/1.16/Tue Jan 25 04:18:38 2005//
+/operations.h/1.4/Tue Jan 25 04:18:38 2005//
+/operations_shorthand_cuesheet.c/1.14/Wed Aug 24 00:15:57 2005//
+/operations_shorthand_seektable.c/1.7/Tue Jan 25 04:18:38 2005//
+/operations_shorthand_streaminfo.c/1.6/Tue Jan 25 04:18:38 2005//
+/operations_shorthand_vorbiscomment.c/1.9/Tue Jan 25 04:18:38 2005//
+/options.c/1.12/Wed Aug 31 00:30:41 2005//
+/options.h/1.6/Tue Jan 25 04:18:38 2005//
+/usage.c/1.11/Wed Aug 31 00:30:41 2005//
+/usage.h/1.4/Tue Jan 25 04:18:38 2005//
+/utils.c/1.10/Wed Aug 24 07:39:25 2005//
+/utils.h/1.6/Tue Jan 25 04:18:38 2005//
+D

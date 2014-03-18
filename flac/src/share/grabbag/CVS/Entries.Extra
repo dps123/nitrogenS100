@@ -1,0 +1,7 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/cuesheet.c////*///
+/file.c////*///
+/grabbag_static.dsp////*///
+/replaygain.c////*///
+/seektable.c////*///

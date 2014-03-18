@@ -1,0 +1,13 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/charset.c////*///
+/charset.h////*///
+/configure.c////*///
+/configure.h////*///
+/fileinfo.c////*///
+/http.c////*///
+/http.h////*///
+/plugin.c////*///
+/plugin.h////*///
+/tag.c////*///
+/tag.h////*///

@@ -1,0 +1,16 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/main.c////*///
+/metaflac.dsp////*///
+/operations.c////*///
+/operations.h////*///
+/operations_shorthand_cuesheet.c////*///
+/operations_shorthand_seektable.c////*///
+/operations_shorthand_streaminfo.c////*///
+/operations_shorthand_vorbiscomment.c////*///
+/options.c////*///
+/options.h////*///
+/usage.c////*///
+/usage.h////*///
+/utils.c////*///
+/utils.h////*///

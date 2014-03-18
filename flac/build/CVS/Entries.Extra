@@ -1,0 +1,4 @@
+/Makefile.am////*///
+/config.mk////*///
+/exe.mk////*///
+/lib.mk////*///

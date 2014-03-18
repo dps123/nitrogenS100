@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c)  2000,2001,2002,2003,2004,2005  Josh Coalson -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the GNU Free Documentation License, Version 1.1 -->
+<!-- or any later version published by the Free Software Foundation; -->
+<!-- with no invariant sections. -->
+<!-- A copy of the license can be found at http://www.gnu.org/copyleft/fdl.html -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="author" content="Josh Coalson" />
+	<meta name="description" content="A free, open source codec for lossless audio compression and decompression" />
+	<meta name="keywords" content="free,lossless,audio,codec,encoder,decoder,compression,compressor,archival,archive,archiving,backup,music" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="flac.css" />
+	<title>FLAC - Free Lossless Audio Codec</title>
+</head>
+
+<body>
+
+<div class="logo">
+	<a href="http://flac.sourceforge.net/"><img src="images/logo130.gif" alt="FLAC Logo" align="middle" border="0" hspace="0" /></a>
+</div>
+
+<div class="above_nav"></div>
+
+<div class="navbar">
+	&nbsp;home&nbsp;&nbsp;|
+	&nbsp;<a href="faq.html">faq</a>&nbsp;&nbsp;|
+	&nbsp;<a href="news.html">news</a>&nbsp;&nbsp;|
+	&nbsp;<a href="download.html">download</a>&nbsp;&nbsp;|
+	&nbsp;<a href="features.html">features</a>&nbsp;&nbsp;|
+	&nbsp;<a href="goals.html">goals</a>&nbsp;&nbsp;|
+	&nbsp;<a href="format.html">format</a>&nbsp;&nbsp;|
+	&nbsp;<a href="id.html">id</a>&nbsp;&nbsp;|
+	&nbsp;<a href="comparison.html">comparison</a>&nbsp;&nbsp;|
+	&nbsp;<a href="documentation.html">documentation</a>&nbsp;&nbsp;|
+	&nbsp;<a href="changelog.html">changelog</a>&nbsp;&nbsp;|
+	&nbsp;<a href="links.html">links</a>&nbsp;&nbsp;|
+	&nbsp;<a href="developers.html">developers</a>&nbsp;
+</div>
+
+<div class="langbar">
+	&nbsp;english&nbsp;&nbsp;|
+	&nbsp;<a href="ru/index.html">russian</a>&nbsp;
+</div>
+
+<div class="below_nav"></div>
+
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="75%" align="center" valign="top">
+
+			<div class="box">
+				<div class="box_title">
+					status
+				</div>
+				<div class="box_header"></div>
+				<div class="box_body">
+					FLAC 1.1.2 is available.  New in this release are small decoding speedups for all platforms, small encoding speedups in fast (non-LPC) mode, streaming support in the XMMS plugin, and several bug fixes.  For developers there are also a few additions and changes to the metadata API to make working with tags easier.  See the <a href="changelog.html#flac_1_1_2">changelog entry</a> for complete details.  This release actually wasn't supposed to happen so soon, but needed to be made to fix library naming and build problems in FLAC 1.1.1 that caused trouble for package maintainers, so unless you are having trouble with one of the particular bugs that got fixed in 1.1.2 then there is not much of a need to upgrade.
+					<br /><br />
+					Another handful of devices that support FLAC are out or announced: <!--the a href="http://www.planetminidisc.com/chroma-20gb.html"@Rio Chroma@/A, -->the <a href="http://www.zensonic.com/press_z500.php">Zensonic Z500 Networked DVD Media Player</a>, Escient's <a href="http://www.escient.com/releases/escient_jan0605_2.html">new FireBall E2-40, E2-160, and DVDM-300</a>, the <a href="http://www.digitaltechniques.com/M300A_Overview.html">M300A Digital Music Player</a> from Digital Techniques (see <a href="http://www.digitaltechniques.com/QuickStart.html">manual</a>), Meda Systems' <a href="http://www.medainc.com/">Bravo servers</a> (<a href="http://www.stereophile.com/news/092704medasystems/">more info</a>), and the <a href="http://www.cesweb.org/attendees/show_floor/product_locator/product_details.asp?prodid=5181">MS300 Music Server</a> by McIntosh Laboratory.
+					<br /><br />
+					We just found out that <a href="http://www.skipjam.com/">SkipJam</a>'s line of networked audio/video components supports FLAC.  (Even though it's not mentioned on their site, I'm assured that's just because the site hasn't been updated yet.)
+					<br /><br />
+					<a href="http://www.escient.com/">Escient</a> has a new home stereo component that supports FLAC, the <a href="http://www.escient.com/fireballe2300.html">FireBall E2-300</a>.
+					<br /><br />
+					<a href="http://www.mindawn.com/">Mindawn</a>, a new online music service offering FLAC and Ogg Vorbis, is now open.  They also have a multi-platform (Windows, Linux, Mac OS X) CD ripper/encoder and are finishing up a multi-platform player.
+					<br /><br />
+					Illiminable has updated his excellent <a href="http://www.illiminable.com/ogg/">Directshow filters</a> to support native FLAC (in addition to Ogg FLAC/Vorbis/Speex/Theora).
+					<br /><br />
+					<i>last updated 2005-Feb-05</i> <!-- @@@ remember to update the date after changes -->
+				</div>
+				<div class="box_footer"></div>
+			</div>
+
+			<br />
+
+			<div class="box">
+				<div class="box_title">
+					what is FLAC?
+				</div>
+				<div class="box_header"></div>
+				<div class="box_body">
+					FLAC stands for Free Lossless Audio Codec.  Grossly oversimplified, FLAC is similar to MP3, but lossless, meaning that audio is compressed in FLAC without any loss in quality.  This is similar to how Zip works, except with FLAC you will get much better compression because it is designed specifically for audio, and you can play back compressed FLAC files in your favorite player (or your car or home stereo, see <a href="links.html#hardware">supported devices</a>) just like you would an MP3 file.
+					<br /><br />
+					FLAC is freely available and supported on most operating systems, including Windows, "unix" (Linux, *BSD, Solaris, OS X, IRIX), BeOS, OS/2, and Amiga.  There are build systems for autotools, MSVC, Watcom C, and Project Builder.
+					<br /><br />
+					See the <a href="features.html">features page</a> for a complete list of features, or the <a href="comparison.html">comparison page</a> to see how FLAC compares with other lossless codecs.
+					<br /><br />
+					The FLAC project consists of:
+					<br /><br />
+					<ul>
+						<li>the stream format</li>
+						<li>reference encoders and decoders in library form</li>
+						<li><span class="commandname">flac</span>, a command-line program to encode and decode FLAC files</li>
+						<li><span class="commandname">metaflac</span>, a command-line metadata editor for FLAC files</li>
+						<li>input plugins for various music players</li>
+					</ul>
+					<br /><br />
+					When we say that FLAC is "Free" it means more than just that it is available at no cost.  It means that the specification of the format is fully open to the public to be used for any purpose (the FLAC project reserves the right to set the FLAC specification and certify compliance), and that neither the FLAC format nor any of the implemented encoding/decoding methods are covered by any known patent.  It also means that all the source code is available under open-source licenses.  It is the first truly open and free lossless audio format.  (For more information, see the <a href="license.html">license page</a>.)
+				</div>
+				<div class="box_footer"></div>
+			</div>
+
+			<br />
+
+			<div class="box">
+				<div class="box_title">
+					download
+				</div>
+				<div class="box_header"></div>
+				<div class="box_body">
+					Visit the <a href="download.html">download page</a> for links to the source code or pre-built binaries.
+				</div>
+				<div class="box_footer"></div>
+			</div>
+
+			<br />
+
+			<div class="box">
+				<div class="box_title">
+					documentation
+				</div>
+				<div class="box_header"></div>
+				<div class="box_body">
+					The documentation is available online as well as in the distributions.  The general installation and usage documentation for <span class="commandname">flac</span> and the plugins is <a href="documentation.html">here</a>.  For a detailed description of the FLAC format and reference encoder see the <a href="format.html">FLAC format page</a>.
+				</div>
+				<div class="box_footer"></div>
+			</div>
+
+			<br />
+
+			<div class="box">
+				<div class="box_title">
+					id registration
+				</div>
+				<div class="box_header"></div>
+				<div class="box_body">
+					If you have an application that uses FLAC and would like it to be able to tag FLAC files with custom metadata, visit the <a href="id.html">registration page</a> to register an ID for your application.
+				</div>
+				<div class="box_footer"></div>
+			</div>
+
+		</td>
+
+
+		<td width="25%" align="center" valign="top">
+
+			<div class="smallbox">
+				<div class="smallbox_title">
+					news
+				</div>
+				<div class="smallbox_header"></div>
+				<div class="smallbox_body">
+					<a href="news.html#20050205">05-Feb-2005</a> :<br />Version 1.1.2 released<br /><br />
+					<a href="news.html#20050117">17-Jan-2005</a> :<br />Several new devices support FLAC<br /><br />
+					<a href="news.html#20041112">12-Nov-2004</a> :<br />Escient's new FireBall E2-300 supports FLAC<br /><br />
+					<a href="news.html#20041102">02-Nov-2004</a> :<br />New Mindawn music store offers FLAC and Vorbis<br /><br />
+					<a href="news.html#20041001">01-Oct-2004</a> :<br />Version 1.1.1 released<br /><br />
+					<a href="news.html#20040727">27-Jul-2004</a> :<br />The Furthur network now supports FLAC<br /><br />
+					<a href="news.html#20040621">21-Jun-2004</a> :<br />Bonnaroo soundboard recordings available in FLAC<br /><br />
+					<a href="news.html#20040303">03-Mar-2004</a> :<br />Metallica offers live shows in FLAC<br /><br />
+					<a href="news.html#20040203">03-Feb-2004</a> :<br />Charlie Hunter makes select albums available in FLAC<br /><br />
+					<a href="news.html#20031119">19-Nov-2003</a> :<br />PhatNoise's new Home Digital Media Player supports FLAC<br /><br />
+					<a href="news.html#20031118">18-Nov-2003</a> :<br />Slim's new 'Squeezebox' supports FLAC<br /><br />
+					<a href="news.html#20031111">11-Nov-2003</a> :<br />Primus offers live shows in FLAC<br /><br />
+					<a href="news.html#20031013">13-Oct-2003</a> :<br />Magnatune catalog available in FLAC<br /><br />
+					<a href="news.html#20030811">11-Aug-2003</a> :<br />New Rio Karma supports FLAC<br /><br />
+					<a href="news.html#20030623">23-Jun-2003</a> :<br />livephish.com offers FLAC shows<br /><br />
+					<a href="news.html#20030209">09-Feb-2003</a> :<br />ReQuest adds FLAC support<br /><br />
+					<a href="news.html#20030129">29-Jan-2003</a> :<br />FLAC joins Xiph.org!<br /><br />
+					<a href="news.html#20030126">26-Jan-2003</a> :<br />Version 1.1.0 released<br /><br />
+					<a href="news.html">(all news)</a>
+				</div>
+				<div class="smallbox_footer"></div>
+			</div>
+
+			<br />
+
+			<div>
+				<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=13478&amp;type=1" alt="SourceForge Logo" width="88" height="31" border="0" /></a>
+			</div>
+
+			<br />
+
+			<a href="http://www.eff.org/cafe/"><img src="images/cafebug.gif" alt="CAFE Logo" border="0" /></a><br />
+
+		</td>
+	</tr>
+</table>
+
+<div class="copyright">
+	Copyright (c) 2000,2001,2002,2003,2004,2005  Josh Coalson
+</div>
+
+</body>
+</html>

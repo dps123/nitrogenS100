@@ -1,0 +1,11 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/file_decoder.cpp////*///
+/file_encoder.cpp////*///
+/libOggFLAC++.m4////*///
+/libOggFLAC++_dynamic.dsp////*///
+/libOggFLAC++_static.dsp////*///
+/seekable_stream_decoder.cpp////*///
+/seekable_stream_encoder.cpp////*///
+/stream_decoder.cpp////*///
+/stream_encoder.cpp////*///

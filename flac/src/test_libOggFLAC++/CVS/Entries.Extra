@@ -1,0 +1,13 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/README////*///
+/decoders.cpp////*///
+/decoders.h////*///
+/encoders.cpp////*///
+/encoders.h////*///
+/file_utils.c////*///
+/file_utils.h////*///
+/main.cpp////*///
+/metadata_utils.c////*///
+/metadata_utils.h////*///
+/test_libOggFLAC++.dsp////*///

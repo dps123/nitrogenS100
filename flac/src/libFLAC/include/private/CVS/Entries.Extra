@@ -1,0 +1,14 @@
+/Makefile.am////*///
+/all.h////*///
+/bitbuffer.h////*///
+/bitmath.h////*///
+/cpu.h////*///
+/crc.h////*///
+/fixed.h////*///
+/float.h////*///
+/format.h////*///
+/lpc.h////*///
+/md5.h////*///
+/memory.h////*///
+/metadata.h////*///
+/stream_encoder_framing.h////*///

@@ -1,0 +1,46 @@
+//
+// resource.rc2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////
+HI_RES_AWARE CEUX {1}	// turn off the emulation layer
+			// Remove this resource to enable pixel-
+			// doubling on platforms that support it
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SHMENUBAR
+//
+
+MNU_EMPTY SHMENUBAR DISCARDABLE
+BEGIN
+	0,
+	2
+
+    I_IMAGENONE, IDM_LSOFT, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE,
+    IDS_EMPTY, 0, NOMENU,
+    
+    I_IMAGENONE, IDM_RSOFT, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE,
+    IDS_EMPTY, 0, NOMENU,
+END
+
+MNU_OKCANCEL SHMENUBAR DISCARDABLE
+BEGIN
+	0,
+	2
+
+    I_IMAGENONE, IDM_CANCEL, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE,
+    IDS_CANCEL, 0, NOMENU,
+    
+    I_IMAGENONE, IDM_OK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE,
+    IDS_OK, 0, NOMENU,
+END

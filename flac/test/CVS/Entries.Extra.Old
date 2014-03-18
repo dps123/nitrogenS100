@@ -1,0 +1,15 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/cuesheet.ok////*///
+/metaflac.flac.in////*///
+/metaflac.flac.ok////*///
+/test_bins.sh////*///
+/test_flac.sh////*///
+/test_grabbag.sh////*///
+/test_libFLAC++.sh////*///
+/test_libFLAC.sh////*///
+/test_libOggFLAC++.sh////*///
+/test_libOggFLAC.sh////*///
+/test_metaflac.sh////*///
+/test_seeking.sh////*///
+/test_streams.sh////*///

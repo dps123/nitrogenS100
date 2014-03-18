@@ -1,0 +1,13 @@
+/Makefile.am/1.25/Wed Feb  2 01:51:25 2005//
+/Makefile.lite/1.9/Tue Jan 25 04:18:35 2005//
+/file_decoder.cpp/1.9/Tue Jan 25 04:18:35 2005//
+/file_encoder.cpp/1.11/Thu Jan 27 03:55:35 2005//
+/libFLAC++.m4/1.5/Tue Jul 20 01:24:48 2004//
+/libFLAC++_dynamic.dsp/1.1/Thu Nov 21 09:02:37 2002//
+/libFLAC++_static.dsp/1.4/Tue Jan 14 09:05:43 2003//
+/metadata.cpp/1.19/Tue Jan 25 04:18:35 2005//
+/seekable_stream_decoder.cpp/1.9/Tue Jan 25 04:18:35 2005//
+/seekable_stream_encoder.cpp/1.12/Thu Jan 27 03:55:35 2005//
+/stream_decoder.cpp/1.9/Tue Jan 25 04:18:35 2005//
+/stream_encoder.cpp/1.11/Thu Jan 27 03:55:35 2005//
+D

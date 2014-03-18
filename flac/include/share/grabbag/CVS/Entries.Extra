@@ -1,0 +1,5 @@
+/Makefile.am////*///
+/cuesheet.h////*///
+/file.h////*///
+/replaygain.h////*///
+/seektable.h////*///

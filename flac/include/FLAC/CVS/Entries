@@ -1,0 +1,15 @@
+/Makefile.am/1.19/Tue Jan 25 04:18:22 2005//
+/all.h/1.30/Tue Jan 25 04:18:22 2005//
+/assert.h/1.8/Tue Jan 25 04:18:22 2005//
+/callback.h/1.6/Fri Dec  2 05:31:11 2005//
+/export.h/1.9/Tue Jan 25 04:18:22 2005//
+/file_decoder.h/1.42/Tue Jan 25 04:18:22 2005//
+/file_encoder.h/1.17/Tue Jan 25 04:18:22 2005//
+/format.h/1.77/Wed Aug 31 01:00:53 2005//
+/metadata.h/1.50/Sun Jan 30 18:15:36 2005//
+/ordinals.h/1.13/Sat Sep  3 03:54:16 2005//
+/seekable_stream_decoder.h/1.27/Tue Jan 25 04:18:23 2005//
+/seekable_stream_encoder.h/1.19/Tue Jan 25 04:18:23 2005//
+/stream_decoder.h/1.39/Tue Jan 25 05:03:49 2005//
+/stream_encoder.h/1.42/Tue Jan 25 04:18:24 2005//
+D

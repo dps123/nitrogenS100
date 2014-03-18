@@ -1,0 +1,16 @@
+/Makefile.am/1.25/Wed Feb  2 01:51:27 2005//
+/Makefile.lite/1.12/Tue Jan 25 04:18:35 2005//
+/file_decoder.c/1.16/Tue Jan 25 04:18:35 2005//
+/file_encoder.c/1.9/Tue Jan 25 04:18:35 2005//
+/libOggFLAC.m4/1.3/Tue Jul 20 01:24:48 2004//
+/libOggFLAC_dynamic.dsp/1.5/Fri Sep 10 00:32:09 2004//
+/libOggFLAC_static.dsp/1.6/Fri Sep 10 00:32:09 2004//
+/ogg_decoder_aspect.c/1.10/Tue Jan 25 04:18:35 2005//
+/ogg_encoder_aspect.c/1.14/Tue Jan 25 04:18:35 2005//
+/ogg_helper.c/1.5/Tue Jan 25 04:18:35 2005//
+/ogg_mapping.c/1.4/Wed Aug 24 07:39:25 2005//
+/seekable_stream_decoder.c/1.21/Sat Jan 29 06:10:04 2005//
+/seekable_stream_encoder.c/1.8/Tue Jan 25 04:18:36 2005//
+/stream_decoder.c/1.24/Tue Jan 25 04:18:37 2005//
+/stream_encoder.c/1.23/Tue Jan 25 04:18:37 2005//
+D

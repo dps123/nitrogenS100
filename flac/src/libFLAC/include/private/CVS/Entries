@@ -1,0 +1,15 @@
+/Makefile.am/1.11/Tue Jan 25 04:18:33 2005//
+/all.h/1.15/Tue Jan 25 04:18:33 2005//
+/bitbuffer.h/1.23/Thu May  5 00:42:32 2005//
+/bitmath.h/1.8/Tue Jan 25 04:18:33 2005//
+/cpu.h/1.15/Tue Jan 25 04:18:33 2005//
+/crc.h/1.11/Tue Jan 25 04:18:33 2005//
+/fixed.h/1.17/Tue Jan 25 04:18:33 2005//
+/float.h/1.4/Thu Jan 27 03:57:35 2005//
+/format.h/1.6/Tue Jan 25 04:18:33 2005//
+/lpc.h/1.28/Wed Jan 26 04:04:43 2005//
+/md5.h/1.4/Fri Jul 23 05:18:22 2004//
+/memory.h/1.11/Tue Jan 25 04:18:33 2005//
+/metadata.h/1.7/Tue Jan 25 04:18:33 2005//
+/stream_encoder_framing.h/1.10/Tue Jan 25 04:18:33 2005//
+D

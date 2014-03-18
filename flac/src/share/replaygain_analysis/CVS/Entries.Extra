@@ -1,0 +1,4 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/replaygain_analysis.c////*///
+/replaygain_analysis_static.dsp////*///

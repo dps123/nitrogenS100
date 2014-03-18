@@ -1,0 +1,11 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/charmaps.h////*///
+/charset.c////*///
+/charset.h////*///
+/charset_test.c////*///
+/charsetmap.h////*///
+/iconvert.c////*///
+/makemap.c////*///
+/utf8.c////*///
+/utf8_static.dsp////*///

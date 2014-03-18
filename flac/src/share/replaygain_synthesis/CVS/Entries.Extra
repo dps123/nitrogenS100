@@ -1,0 +1,5 @@
+/Makefile.am////*///
+/Makefile.lite////*///
+/replaygain_synthesis.c////*///
+/replaygain_synthesis_static.dsp////*///
+D/include///////

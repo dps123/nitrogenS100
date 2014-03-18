@@ -1,0 +1,15 @@
+/AUTHORS////*///
+/COPYING.FDL////*///
+/COPYING.GPL////*///
+/COPYING.LGPL////*///
+/COPYING.Xiph////*///
+/FLAC.dsw////*///
+/Makefile.am////*///
+/Makefile.lite////*///
+/README////*///
+/all.dsp////*///
+/all_dynamic.dsp////*///
+/all_static.dsp////*///
+/autogen.sh////*///
+/configure.in////*///
+/strip_non_asm_libtool_args.sh////*///

@@ -1,0 +1,61 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: libOggFLAC_static - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "c:\tmp\RSP3E.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I ".\include" /I "..\..\include" /D "FLAC__NO_DLL" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /Fp"Debug_static/libOggFLAC_static.pch" /YX /Fo"Debug_static/" /Fd"Debug_static/" /FD /GZ /c 
+"H:\build\nitrogen\flac\src\libOggFLAC\ogg_decoder_aspect.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\ogg_encoder_aspect.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\ogg_helper.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\seekable_stream_decoder.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\seekable_stream_encoder.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\stream_decoder.c"
+"H:\build\nitrogen\flac\src\libOggFLAC\stream_encoder.c"
+]
+Creating command line "cl.exe @c:\tmp\RSP3E.tmp" 
+Creating temporary file "c:\tmp\RSP3F.tmp" with contents
+[
+/nologo /out:"..\..\obj\debug\lib\libOggFLAC_static.lib" /nodefaultlib 
+.\Debug_static\file_decoder.obj
+.\Debug_static\file_encoder.obj
+.\Debug_static\ogg_decoder_aspect.obj
+.\Debug_static\ogg_encoder_aspect.obj
+.\Debug_static\ogg_helper.obj
+.\Debug_static\ogg_mapping.obj
+.\Debug_static\seekable_stream_decoder.obj
+.\Debug_static\seekable_stream_encoder.obj
+.\Debug_static\stream_decoder.obj
+.\Debug_static\stream_encoder.obj
+\build\nitrogen\flac\obj\debug\lib\libFLAC_static.lib
+]
+Creating command line "link.exe -lib @c:\tmp\RSP3F.tmp"
+<h3>Output Window</h3>
+Compiling...
+ogg_decoder_aspect.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_decoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+ogg_encoder_aspect.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_encoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+ogg_helper.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_helper.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+seekable_stream_decoder.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_decoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+seekable_stream_encoder.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_encoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+stream_decoder.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_decoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+stream_encoder.c
+h:\build\nitrogen\flac\src\liboggflac\include\private\ogg_encoder_aspect.h(35) : fatal error C1083: Cannot open include file: 'ogg/ogg.h': No such file or directory
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+all - 7 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

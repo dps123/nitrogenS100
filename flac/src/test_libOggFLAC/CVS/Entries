@@ -1,0 +1,14 @@
+/Makefile.am/1.16/Sun Jan 30 18:44:48 2005//
+/Makefile.lite/1.11/Tue Jan 25 04:18:43 2005//
+/README/1.2/Fri Jan 10 05:19:27 2003//
+/decoders.c/1.16/Tue Jan 25 04:18:43 2005//
+/decoders.h/1.4/Tue Jan 25 04:18:43 2005//
+/encoders.c/1.18/Tue Jan 25 04:18:43 2005//
+/encoders.h/1.4/Tue Jan 25 04:18:44 2005//
+/file_utils.c/1.8/Tue Jan 25 04:18:44 2005//
+/file_utils.h/1.6/Tue Jan 25 04:18:44 2005//
+/main.c/1.4/Tue Jan 25 04:18:44 2005//
+/metadata_utils.c/1.11/Tue Jan 25 04:18:44 2005//
+/metadata_utils.h/1.7/Tue Jan 25 04:18:44 2005//
+/test_libOggFLAC.dsp/1.6/Wed Dec 17 04:51:07 2003//
+D

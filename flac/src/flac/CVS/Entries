@@ -1,0 +1,17 @@
+/Makefile.am/1.34/Sun Jan 30 18:44:46 2005//
+/Makefile.lite/1.29/Tue Jan 25 04:18:27 2005//
+/analyze.c/1.14/Tue Jan 25 04:18:27 2005//
+/analyze.h/1.8/Tue Jan 25 04:18:27 2005//
+/decode.c/1.88/Thu Sep  1 01:01:08 2005//
+/decode.h/1.25/Tue Jan 25 04:18:28 2005//
+/encode.c/1.144/Wed Aug 31 06:13:06 2005//
+/encode.h/1.34/Fri Aug 26 05:57:04 2005//
+/flac.dsp/1.12/Wed Dec 17 05:34:21 2003//
+/local_string_utils.c/1.1/Wed Dec 17 05:30:26 2003//
+/local_string_utils.h/1.3/Tue Jan 25 04:18:29 2005//
+/main.c/1.122/Sat Sep  3 03:54:16 2005//
+/utils.c/1.7/Tue Jan 25 04:18:29 2005//
+/utils.h/1.7/Tue Jan 25 04:18:29 2005//
+/vorbiscomment.c/1.7/Tue Jan 25 04:18:29 2005//
+/vorbiscomment.h/1.4/Tue Jan 25 04:18:29 2005//
+D
