@@ -1,0 +1,11 @@
+syntax: glob
+*/CVS/*
+*.ncb
+*.suo
+*.obj
+*.sbr
+*.lib
+*.pch
+*.pdb
+*/Pocket PC 2003 (ARMV4)/*
+*.vcproj.*
