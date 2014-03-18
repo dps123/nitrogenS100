@@ -285,7 +285,7 @@ class CWndMain {
 		CMenu * lpMenu;
 
 		ATOM InitClass();
-		bool Show();
+		bool Show(bool minimized);
 
 		WBRLIST MenuMain;
 		WBRLIST MenuSettings;

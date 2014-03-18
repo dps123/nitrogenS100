@@ -50,8 +50,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	player()->lpWndEqualizer->InitClass();
 	player()->lpWndAbout->InitClass();
 
+	bool isMinimized = lstrcmp(lpCmdLine, L"/minimized")==0;
 	// Shows WndMain
-	if (!g_player->lpWndMain->Show()) {
+	if (!g_player->lpWndMain->Show(isMinimized)) {
 		return false;
 	}
 

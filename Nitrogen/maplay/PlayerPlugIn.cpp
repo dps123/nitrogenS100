@@ -137,18 +137,31 @@ BOOL CPlayer::PlugInOpenFile(LPCTSTR pszFile)
 		pInfo = (PLUGIN_INFO*)m_PlugInInfo.GetAt(i);
 		if (pInfo->dwFunc & PLUGIN_FUNC_DECFILE) {
 			if (pInfo->pPlugIn->OpenFile(pszFile, &info)) {
-				memset(&m_Info, 0, sizeof(m_Info));
-				m_Info.nChannels = info.nChannels;
-				m_Info.nSamplingRate = info.nSampleRate;
-				m_Info.nBitRate = info.nAvgBitrate;
-				m_nPlugInBps = info.nBitsPerSample;
-				m_Info.nFrameSize = 0;
-				m_Info.nSamplesPerFrame = 0;
-				m_nDuration = (int)(((double)info.nDuration * m_Info.nSamplingRate) / 1000);
+				// Skipping too audiophile files :) We can't reproduce this on ppcflac 2007/our device
+				if (info.nBitsPerSample > 16 || info.nSampleRate > 44100){
+					//nSamplingRate = 44100
+					//44100
+					//					LPWSTR sChannels;
+					//					wsprintf(sChannels, L"%d", info.nBitsPerSample);
+					pInfo->pPlugIn->CloseFile();
 
-				m_nFilePlugIn = i;
-				m_fOpen = OPEN_PLUGIN;
-				return TRUE;
+					//TCHAR  s[100]=_T("Unable to open file: ");
+					//					MessageBox(NULL, _tcscat(s, pszFile), L"ERROR", MB_ICONERROR|MB_OK);
+					return false;
+				}else{
+				    memset(&m_Info, 0, sizeof(m_Info));
+					m_Info.nChannels = info.nChannels;
+					m_Info.nSamplingRate = info.nSampleRate;
+					m_Info.nBitRate = info.nAvgBitrate;
+					m_nPlugInBps = info.nBitsPerSample;
+					m_Info.nFrameSize = 0;
+					m_Info.nSamplesPerFrame = 0;
+					m_nDuration = (int)(((double)info.nDuration * m_Info.nSamplingRate) / 1000);
+
+					m_nFilePlugIn = i;
+					m_fOpen = OPEN_PLUGIN;
+					return TRUE;
+				}
 			}
 		}
 	}
