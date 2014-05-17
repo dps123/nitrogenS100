@@ -1566,6 +1566,10 @@ LRESULT CWndMain::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	WriteFile(LOG, &buf[0], wcslen(&buf[0])*sizeof(WCHAR), &n, false);
 #endif
 			switch (wParam) {
+				case 4: {// Play_Pause
+					OnExternalCmd(ECMD_PLAYPAUSE);				
+					break;
+				}
 				case 5: {// Prev
 					OnExternalCmd(ECMD_PREVSONG);				
 					break;

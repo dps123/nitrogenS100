@@ -401,6 +401,8 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 		}
 	}
 
+	PostS100StatusMessage();
+
 	lpWndMain->UpdatePlayPos();
 	UpdatePrevNextToggle();
 
