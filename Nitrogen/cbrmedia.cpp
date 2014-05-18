@@ -255,7 +255,7 @@ void CBrMedia::DoAction(int ac) {
 			player()->lpPlaylist->AppendFile(p);
 		}
 		if (player()->lpPlaylist->Count > bCnt) {
-			if (ac == 0 || ((ac == 1) && (bCnt == 0))) {
+			if ((ac == 0) || (bCnt == 0)) {
 				player()->ChangePlaylistIndex(bCnt, false);
 				player()->Play();
 			}
