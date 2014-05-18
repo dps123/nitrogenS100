@@ -257,8 +257,6 @@ void CBrMedia::DoAction(int ac) {
 		if (player()->lpPlaylist->Count > bCnt) {
 			if (ac == 0 || ((ac == 1) && (bCnt == 0))) {
 				player()->ChangePlaylistIndex(bCnt, false);
-			}
-			if (ac == 0) {
 				player()->Play();
 			}
 			player()->lpWndBrowser->Close();
@@ -277,13 +275,15 @@ void CBrMedia::DoAction(int ac) {
 			player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
 		}
 
-		if (player()->lpPlaylist->Count > bCnt) {
-			if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
-				player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
-			} else {
-				player()->ChangePlaylistIndex(bCnt, false);
+		if ((player()->lpPlaylist->Count > bCnt)) {
+			if ((ac == 2) || (bCnt==0)) {
+				if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
+					player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
+				} else {
+					player()->ChangePlaylistIndex(bCnt, false);
+				}
+				player()->Play();
 			}
-			player()->Play();
 		}
 		player()->lpPlaylist->RebuildShuffle();
 		player()->lpWndBrowser->Close();
@@ -361,8 +361,10 @@ int CBrMedia::MsgProc(int uMsg) {
 						player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
 					}
 					if (player()->lpPlaylist->Count > bCnt) {
-						player()->ChangePlaylistIndex(bCnt, false);
-						player()->Play();
+						if ((bCnt==0) || (MenuMedia.ItemIndex == 0)) {
+							player()->ChangePlaylistIndex(bCnt, false);
+							player()->Play();
+						}
 					}
 					player()->lpPlaylist->RebuildShuffle();
 					player()->lpWndBrowser->Close();
@@ -390,8 +392,10 @@ int CBrMedia::MsgProc(int uMsg) {
 						}
 					}
 					if (player()->lpPlaylist->Count > bCnt) {
-						player()->ChangePlaylistIndex(bCnt, false);
-						player()->Play();
+						if ((bCnt==0) || (MenuMedia.ItemIndex == 2)) {
+							player()->ChangePlaylistIndex(bCnt, false);
+							player()->Play();
+						}
 					}
 					player()->lpPlaylist->RebuildShuffle();
 					player()->lpWndBrowser->Close();
