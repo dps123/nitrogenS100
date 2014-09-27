@@ -12,6 +12,7 @@ CNtPlayer::CNtPlayer(HINSTANCE hInst, LPWSTR cmdLine) {
 
 	musicCode = 0;
 	diskWaitFlag=0;
+	firstStart=0;
 	KeysLocked = false;
 
 	// Loads skins/files directories
@@ -150,7 +151,7 @@ void CNtPlayer::PostS100StatusMessage() {
 		PostS100Message(WM_S100_AUDIO,3,0);
 		PostS100Message(WM_S100_AUDIO,163,0);
 	}
-	PostS100Message(WM_S100_AUDIO,160,PlayingIndex/*lpPlaylist->Index*/+1);
+	PostS100Message(WM_S100_AUDIO,160,PlayingIndex+1);
 	PostS100Message(WM_S100_AUDIO,161,lpPlaylist->Count);
 	PostS100Message(WM_S100_AUDIO,162,PlayingSongDuration);
 }
@@ -255,6 +256,11 @@ void CNtPlayer::UpdatePrevNextToggle() {
 }
 
 void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
+	wchar_t songName[MAX_TAG_STR];
+	if (diskWaitFlag>0 && firstStart<START_TIMEOUT) {
+		firstStart++;
+		return;
+	}
 	if (diskWaitFlag>0 && diskWaitFlag<=DISKWAIT_TIMEOUT) {
 		if (newIndex!=-2){
 			return;
@@ -268,8 +274,10 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 			GetSongInfo(&sInfo, lpPlaylist->Data[lpPlaylist->Index].FileName);
 
 			GetAlbumArtFilename(lpPlaylist->IndexAlbumArtFilename, lpPlaylist->Data[lpPlaylist->Index].FileName, sInfo.songAlbum);
-
-			iSetText(ITT_SONGNAME, sInfo.songName);
+	
+			_snwprintf(songName,255,L"(%d/%d) %s", PlayingIndex+1, lpPlaylist->Count, sInfo.songName);
+			// iSetText(ITT_SONGNAME, sInfo.songName);
+			iSetText(ITT_SONGNAME, songName);
 			iSetText(ITT_SONGARTIST, sInfo.songArtist);
 
 			iSetCmdToggle(ICMD_PLAYPAUSE, (MAP_GetStatus(MAP) == MAP_STATUS_PLAY) && (PlayingIndex == lpPlaylist->Index));
@@ -327,8 +335,9 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 				lpPlaylist->Index = newIndex;
 				lpPlaylist->ShuffleIndex = lpPlaylist->Data[newIndex].ShuffleIndex;
 			}
+
 			/* ≈сли файла не существует, то стартуем таймер и пробуем прочитать его повторно в течении DISKWAIT_TIMEOUT сек (повтор€ем только 1 раз, т.е. только при запуске приложени€)*/
-			if (diskWaitFlag==0 && !FileExists(lpPlaylist->Data[lpPlaylist->Index].FileName)){
+			if (diskWaitFlag==0 && (firstStart<START_TIMEOUT || !FileExists(lpPlaylist->Data[lpPlaylist->Index].FileName))){
 				diskWaitFlag=1;
 				SetTimer(lpWndMain->hWnd, TMR_DISKWAIT, 1000, DiskWaitTimerProc);
 				iSetCmdToggle(ICMD_PLAYPAUSE, false);
@@ -343,7 +352,9 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 
 				GetAlbumArtFilename(lpPlaylist->IndexAlbumArtFilename, lpPlaylist->Data[lpPlaylist->Index].FileName, sInfo.songAlbum);
 
-				iSetText(ITT_SONGNAME, sInfo.songName);
+				_snwprintf(songName,255,L"(%d/%d) %s", PlayingIndex+1, lpPlaylist->Count, sInfo.songName);
+				// iSetText(ITT_SONGNAME, sInfo.songName);
+				iSetText(ITT_SONGNAME, songName);
 				iSetText(ITT_SONGARTIST, sInfo.songArtist);
 
 				iSetCmdToggle(ICMD_PLAYPAUSE, (MAP_GetStatus(MAP) == MAP_STATUS_PLAY) && (PlayingIndex == lpPlaylist->Index));

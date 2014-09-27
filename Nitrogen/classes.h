@@ -482,6 +482,7 @@ class CNtPlayer {
 
 		int musicCode;
 		int diskWaitFlag;
+		int firstStart;
 
 		CConfig * lpConfig;
 		CPlaylist * lpPlaylist;

@@ -6,6 +6,8 @@
 // Definitions of constants
 
 #define DISKWAIT_TIMEOUT    15
+#define START_TIMEOUT		5
+
 
 #define PI					3.141592653
 
