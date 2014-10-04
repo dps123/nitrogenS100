@@ -1326,7 +1326,7 @@ void CWndMain::OnPaint(HDC hDC) {
 
 	if (paintMode & PNT_SONGINFO) {
 		for (int i = 0; i < getItemsCount(); i++) {
-			if ((getItem(i)->Kind == IIK_TEXT) && ((getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_SONGNAME) || (getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_SONGARTIST))) {
+			if ((getItem(i)->Kind == IIK_TEXT) && ((getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_SONGNAME) || (getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_SONGARTIST) || (getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_TRACKNUMBER) || (getItem(i)->IntProp[ITP_TEXTTYPE] == ITT_TRACKCOUNT))) {
 				iDrawTextBg(hDC, i, 0, 0);
 			}
 		}

@@ -256,7 +256,9 @@ void CNtPlayer::UpdatePrevNextToggle() {
 }
 
 void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
-	wchar_t songName[MAX_TAG_STR];
+	wchar_t sTrackNumber[6];
+	wchar_t sTrackCount[6];
+
 	if (diskWaitFlag>0 && firstStart<START_TIMEOUT) {
 		firstStart++;
 		return;
@@ -275,10 +277,15 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 
 			GetAlbumArtFilename(lpPlaylist->IndexAlbumArtFilename, lpPlaylist->Data[lpPlaylist->Index].FileName, sInfo.songAlbum);
 	
-			_snwprintf(songName,255,L"(%d/%d) %s", PlayingIndex+1, lpPlaylist->Count, sInfo.songName);
-			// iSetText(ITT_SONGNAME, sInfo.songName);
-			iSetText(ITT_SONGNAME, songName);
+			iSetText(ITT_SONGNAME, sInfo.songName);
 			iSetText(ITT_SONGARTIST, sInfo.songArtist);
+
+			wsprintf(sTrackNumber, L"%d", lpPlaylist->Index+1);
+			iSetText(ITT_TRACKNUMBER, sTrackNumber);
+
+			wsprintf(sTrackCount, L"%d", lpPlaylist->Count);
+			iSetText(ITT_TRACKCOUNT, sTrackCount);
+
 
 			iSetCmdToggle(ICMD_PLAYPAUSE, (MAP_GetStatus(MAP) == MAP_STATUS_PLAY) && (PlayingIndex == lpPlaylist->Index));
 
@@ -344,6 +351,9 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 				iSetText(ITT_SONGNAME, _str(STR_DISCWAITING));
 				iSetText(ITT_SONGARTIST, L"");
 
+				iSetText(ITT_TRACKNUMBER, L"");
+				iSetText(ITT_TRACKCOUNT, L"");
+
 			} else {
 
 				diskWaitFlag=-1;
@@ -352,10 +362,14 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 
 				GetAlbumArtFilename(lpPlaylist->IndexAlbumArtFilename, lpPlaylist->Data[lpPlaylist->Index].FileName, sInfo.songAlbum);
 
-				_snwprintf(songName,255,L"(%d/%d) %s", PlayingIndex+1, lpPlaylist->Count, sInfo.songName);
-				// iSetText(ITT_SONGNAME, sInfo.songName);
-				iSetText(ITT_SONGNAME, songName);
+				iSetText(ITT_SONGNAME, sInfo.songName);
 				iSetText(ITT_SONGARTIST, sInfo.songArtist);
+
+				wsprintf(sTrackNumber, L"%d", lpPlaylist->Index+1);
+				iSetText(ITT_TRACKNUMBER, sTrackNumber);
+
+				wsprintf(sTrackCount, L"%d", lpPlaylist->Count);
+				iSetText(ITT_TRACKCOUNT, sTrackCount);
 
 				iSetCmdToggle(ICMD_PLAYPAUSE, (MAP_GetStatus(MAP) == MAP_STATUS_PLAY) && (PlayingIndex == lpPlaylist->Index));
 

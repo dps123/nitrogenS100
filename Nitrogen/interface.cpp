@@ -125,6 +125,7 @@ bool iLoadSkin(HWND hWnd, LPWSTR fileName, bool quiet) {
 		Items.Count = 0;
 		ReadFile(f, &Items.Count, 2, &n, false);
 		Items.Data = new IITEM[Items.Count];
+		int textitem_num = 0;
 		for (int i = 0; i < Items.Count; i++) {
 			Items.Data[i].Kind = (IITEMKIND)0;
 			ReadFile(f, &Items.Data[i].Kind, 2, &n, false);
@@ -142,7 +143,15 @@ bool iLoadSkin(HWND hWnd, LPWSTR fileName, bool quiet) {
 			for (int x = 0; x < Items.Data[i].IntPropCount; x++) {
 				ReadFile(f, &Items.Data[i].IntProp[x], 4, &n, false);
 			}
-
+			if (Items.Data[i].Kind == IIK_TEXT) {
+				if (textitem_num ==0) {
+					Items.Data[i].IntProp[ITP_TEXTTYPE]=ITT_TRACKNUMBER;
+				}
+				if (textitem_num ==1) {
+					Items.Data[i].IntProp[ITP_TEXTTYPE]=ITT_TRACKCOUNT;
+				}
+				textitem_num++;
+			}
 			Items.Data[i].CustomProp = 0;
 			Items.Data[i].CustomProp1 = 0;
 		}
