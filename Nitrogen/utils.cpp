@@ -520,6 +520,21 @@ int GetFileCount(LPWSTR search) {
 	return cnt;
 }
 
+long FileSize(LPWSTR filePath) {
+	HANDLE hF = CreateFile(
+		filePath, // file name
+		GENERIC_READ,                // access mode
+		0,                           // share mode
+		NULL,                        // SD
+		OPEN_EXISTING,               // how to create
+		0,                           // file attributes
+		NULL                         // handle to template file
+		);
+	long FileSize = GetFileSize(hF, NULL);
+	CloseHandle(hF);
+	return FileSize;
+}
+
 bool FileExists(LPWSTR search) {
 	HANDLE fileHandle;
 	WIN32_FIND_DATA findData;
@@ -540,7 +555,8 @@ bool GetAlbumArtFilename(LPWSTR lpOut, LPWSTR lpSongFilename, LPWSTR lpSongAlbum
 	wchar_t lpArtPath[MAX_PATH];
 	ChangeFileExt(lpArtPath, player()->lpPlaylist->Data[player()->lpPlaylist->Index].FileName, L".jpg");
 	if (lpArtPath[0] != 0) {
-		if (FileExists(lpArtPath)) {
+		// allow only images < 500K
+		if (FileExists(lpArtPath) && FileSize(lpArtPath) < 500 * 1024) {
 			aaFound = true;
 			wcscpy(lpOut, lpArtPath);
 		}

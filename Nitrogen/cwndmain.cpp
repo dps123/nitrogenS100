@@ -65,7 +65,7 @@ ATOM CWndMain::InitClass() {
 	return RegisterClass(&wc);
 }
 
-bool CWndMain::Show() {
+bool CWndMain::Show(bool minimized) {
 
 	HWND h = CreateWindow(L"AUDIO_WND", L"AUDIO", WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, player()->hInstance, NULL);
 	if (h == NULL) {
@@ -81,7 +81,12 @@ bool CWndMain::Show() {
         MoveWindow(hWnd, rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, FALSE);
     }
 	Showing = true;
-	ShowWindow(hWnd, SW_SHOW);
+	if (!minimized){
+		ShowWindow(hWnd, SW_SHOW);
+	}else{
+		ShowWindow(hWnd, SW_HIDE);
+	}
+
     Repaint(PNT_FORCEFULL, 0);
 	UpdateWindow(hWnd);
 	return true;	
