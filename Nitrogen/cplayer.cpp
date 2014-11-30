@@ -413,9 +413,11 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 
 			RegSetValueExW(hKey, L"MusicCode", 0, REG_DWORD, (BYTE*)&musicCode, 4);
 
+			RegSetValueExW(hKey, L"FileName", 0, REG_SZ, (BYTE*)lpPlaylist->Data[lpPlaylist->Index].FileName, wcslen(lpPlaylist->Data[lpPlaylist->Index].FileName)*2+2);
+
 			DWORD pStatus = (MAP_GetStatus(MAP) == MAP_STATUS_PLAY)*2+(PlayingIndex == lpPlaylist->Index);
 			RegSetValueExW(hKey, L"PlayStatus", 0, REG_DWORD, (BYTE*)&pStatus, 4);
-			
+
 			if (lpPlaylist->IndexAlbumArtFilename[0] != 0) {
 				RegSetValueExW(hKey, L"AlbumArtFilename", 0, REG_SZ, (BYTE*)lpPlaylist->IndexAlbumArtFilename, wcslen(lpPlaylist->IndexAlbumArtFilename)*2+2);
 			} else {
