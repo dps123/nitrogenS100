@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "main.h"
+#include "StudioFile.h"
 
 CPlaylist::CPlaylist() {
 	Count = 0;
@@ -239,14 +240,10 @@ int CPlaylist::GetFileIndex(LPWSTR cFileName) {
 	return 0;
 }
 
-bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
-	
-	Clear();
-
+bool CPlaylist::LoadFromFileNPL(LPWSTR cFileName) {
 	HANDLE f = CreateFile(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
 	if (f == INVALID_HANDLE_VALUE) {
-		player()->diskWaitFlag=-1;
 		return false;
 	}
 
@@ -256,13 +253,11 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 	
 	if (!ReadFile(f, &buf, 4, &n, false)) {
 		CloseHandle(f);
-		player()->diskWaitFlag=-1;
 		return false;
 	}
 
 	if (strcmp("NPLX", (char*)&buf) != 0) {
 		CloseHandle(f);
-		player()->diskWaitFlag=-1;
 		return false;
 	}
 
@@ -271,13 +266,11 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 	
 	if (Count < 0) {
 		CloseHandle(f);
-		player()->diskWaitFlag=-1;
 		return false;
 	}
 	
 	if (Count == 0) {
 		CloseHandle(f);
-		player()->diskWaitFlag=-1;
 		return true;
 	}
 
@@ -286,7 +279,6 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 
 	bool flag;
 	ReadFile(f, &flag, 1, &n, false);
-	
 
 	int PlayingIndex = 0;
 	DWORD CurrentPos = 0;
@@ -307,22 +299,18 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 		if (len <= 0 || len >= MAX_PATH) {
 			Clear();
 			CloseHandle(f);
-			player()->diskWaitFlag=-1;
 			return false;
 		}
 		
 		if (!ReadFile(f, Data[i].FileName, len*sizeof(wchar_t), &n, false)) {
 			Clear();
 			CloseHandle(f);
-			player()->diskWaitFlag=-1;
 			return false;
 
 		}
 		Data[i].FileName[len] = 0;
 	
 	}
-
-	CloseHandle(f);
 
 	if (player()->lpConfig->cf.RememberPos && flag) {
 
@@ -336,6 +324,97 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 		player()->PlayingIndex = NewIndex;
 		player()->PlayingSongPos = 0;
 
+	}
+
+	CloseHandle(f);
+	return true;
+}
+
+bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
+	return true;
+}
+bool CPlaylist::LoadFromFileM3U(LPWSTR cFileName) {
+	CStudioFile* file = new CStudioFile;
+
+	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
+		free(file);
+		return false;
+	}
+
+	Count = 0;
+
+	wchar_t buf[MAX_PATH];
+	char cbuf[MAX_PATH];
+	do {
+		file->ReadString(cbuf,MAX_PATH);
+		mbstowcs(buf,cbuf,MAX_PATH);
+		if (wcslen(buf)>0 && buf[0]!=L'#') {
+			Count++;
+		}
+	} while(!file->isEOF());
+	free(file);
+
+	//wsprintf(buf,L"Playlist Count = %d",Count);
+	//MessageBox(player()->lpWndBrowser->hWnd, buf, _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
+
+	if (Count == 0) {
+		return true;
+	}
+
+	file = new CStudioFile;
+
+	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
+		free(file);
+		return false;
+	}
+
+	wchar_t dirName[MAX_PATH];
+	ExtractFilePath(dirName, cFileName);
+
+	Data = new PLAYLISTENTRY[Count];
+
+	int i=0;
+	do {
+		file->ReadString(cbuf,MAX_PATH);
+		mbstowcs(buf,cbuf,MAX_PATH);
+		if (buf[0]!=L'#') {
+			removeEndline(buf);
+			if (buf[0]!=L'\\') {
+				wsprintf(Data[i].FileName, L"%s%s", dirName, buf);
+			} else {
+				wcscpy(Data[i].FileName, buf);
+			}
+			i++;
+		}
+	} while(!file->isEOF());
+
+	free(file);
+	return true;
+
+
+}
+
+bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
+	
+	Clear();
+	if (CheckFileExt(cFileName, L".npl")) {
+		if (!LoadFromFileNPL(cFileName)) {
+			player()->diskWaitFlag=-1;
+			return false;
+		}
+	} else if (CheckFileExt(cFileName, L".pls")){
+		if (!LoadFromFilePLS(cFileName)) {
+			player()->diskWaitFlag=-1;
+			return false;
+		}
+	} else if (CheckFileExt(cFileName, L".m3u")){
+		if (!LoadFromFileM3U(cFileName)) {
+			player()->diskWaitFlag=-1;
+			return false;
+		}
+	} else {
+		player()->diskWaitFlag=-1;
+		return false;
 	}
 
 	ReadSongDuration();

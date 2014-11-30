@@ -85,6 +85,13 @@ CNtPlayer::CNtPlayer(HINSTANCE hInst, LPWSTR cmdLine) {
 		}
 	}
 
+	// Playlists
+	ExtPlsCount=3;
+	ExtPlsNames = new WEXTSTR[ExtPlsCount];
+	wcscpy(ExtPlsNames[0], L"pls");
+	wcscpy(ExtPlsNames[1], L"m3u");
+	wcscpy(ExtPlsNames[2], L"npl");
+
 	PlayingSongDuration = 0;
 	PlayingSongPos = 0;
 	PlayingIndex = -1;
@@ -398,7 +405,7 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 		musicCode++;
 	}
 
-	if (lpConfig->cf.WriteSongRegistry && diskWaitFlag<0) {
+	if (lpConfig->cf.WriteSongRegistry && diskWaitFlag<0 && lpPlaylist->Count>0) {
 	
 		HKEY hKey;
 		if (RegCreateKeyExW(HKEY_LOCAL_MACHINE, L"System\\State\\Nitrogen", 0, NULL, REG_OPTION_NON_VOLATILE, 0, NULL, &hKey, NULL) == ERROR_SUCCESS) {

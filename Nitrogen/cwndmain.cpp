@@ -736,8 +736,8 @@ void CWndMain::OnButtonClick(int command) {
 		case ICMD_PLAYLIST:
 			if (player()->diskWaitFlag>0) {
 				KillTimer(hWnd, TMR_DISKWAIT);
-				player()->diskWaitFlag=-1;
 			}
+			player()->diskWaitFlag=-1;
 			player()->lpBrMedia->Show();
 			break;
 

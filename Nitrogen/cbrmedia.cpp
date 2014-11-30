@@ -158,39 +158,67 @@ void CBrMedia::ListDirFiles(LPWSTR path) {
 		cntMedia += GetFileCount(search);
 	}
 
+	// Searches for playlist count
+	int cntPls = 0;
+	for (int i = 0; i < player()->ExtPlsCount; i++) {
+		wchar_t search[MAX_PATH];
+		wsprintf(search, L"%s*.%s", path, player()->ExtPlsNames[i]);
+		cntPls += GetFileCount(search);
+	}
+
 	ClearWbrList(&ListMedia);
 	wcscpy(ListMedia.Title, path);
 	ListMedia.ItemIndex = -1;
 
-	ListMedia.Count = cntDir+cntMedia;
+	ListMedia.Count = cntDir+cntMedia+cntPls;
 	
 	if (ListMedia.Count > 0) {
 		ListMedia.Data = new WBRITEM[ListMedia.Count];
 	} else {
 		ListMedia.Data = NULL;
 	}
-	DirCount = cntDir;
+	DirCount = cntDir+cntPls;
+	PlsCount = cntPls;
 
 	FindClose(fileHandle);
 
+	int ind = 0;
 	// Copies directories to array
 	if (cntDir > 0) {
 		fileHandle = FindFirstFile(dirSearch, &findData);
-		int i = 0;
 		do {
 			if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-				SetWbrItem(&ListMedia.Data[i], findData.cFileName, ICO_DIRECTORY, false, false, true);
-				i++;
+				SetWbrItem(&ListMedia.Data[ind], findData.cFileName, ICO_DIRECTORY, false, false, true);
+				ind++;
 			}
 		} while (FindNextFile(fileHandle, &findData));
 		FindClose(fileHandle);
 	}
 
+	// Copies playlist files to array
+	if (cntPls > 0) {
+	
+		for (int i = 0; i < player()->ExtPlsCount; i++) {
+			wchar_t search[MAX_PATH];
+			wsprintf(search, L"%s*.%s", path, player()->ExtPlsNames[i]);
+
+			fileHandle = FindFirstFile(search, &findData);
+			if (fileHandle != INVALID_HANDLE_VALUE) {
+	
+				do {
+					SetWbrItem(&ListMedia.Data[ind], findData.cFileName, ICO_LISTS, false, false, false);
+					ind++;
+				} while (FindNextFile(fileHandle, &findData));
+				FindClose(fileHandle);
+
+			}
+		}
+
+	}
+
 	// Copies files to array
 	if (cntMedia > 0) {
 	
-		int ind = DirCount;
-
 		for (int i = 0; i < player()->ExtCount; i++) {
 			wchar_t search[MAX_PATH];
 			wsprintf(search, L"%s*.%s", path, player()->ExtNames[i]);
@@ -238,55 +266,67 @@ bool CBrMedia::Show() {
 }
 
 void CBrMedia::DoAction(int ac) {
-
-	if (((ac == 0) || (ac == 1)) && (ListMedia.ItemIndex >= 0)) {
-		int bCnt = player()->lpPlaylist->Count;
-		if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_DIRECTORY) {
-			wchar_t p[MAX_PATH];
-			wsprintf(p, L"%s%s\\", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
-			if (player()->lpConfig->cf.AddSubdirs) {
-				player()->lpPlaylist->AppendDirectoryRecursive(p);
-			} else {
-				player()->lpPlaylist->AppendDirectory(p);
+	// Open Playlist
+	if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_LISTS) { 
+		wchar_t p[MAX_PATH];
+		wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
+		if (player()->lpPlaylist->LoadFromFile(p)) {
+			player()->ChangePlaylistIndex(0, false);
+			player()->Play();
+			player()->lpWndBrowser->Close();
+			player()->lpPlaylist->RebuildShuffle();
+		}		
+	} else {
+		// Open music files or directories
+		if (((ac == 0) || (ac == 1)) && (ListMedia.ItemIndex >= 0)) {
+			int bCnt = player()->lpPlaylist->Count;
+			if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_DIRECTORY) {
+				wchar_t p[MAX_PATH];
+				wsprintf(p, L"%s%s\\", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
+				if (player()->lpConfig->cf.AddSubdirs) {
+					player()->lpPlaylist->AppendDirectoryRecursive(p);
+				} else {
+					player()->lpPlaylist->AppendDirectory(p);
+				}
+			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
+				wchar_t p[MAX_PATH];
+				wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
+				player()->lpPlaylist->AppendFile(p);
 			}
-		} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
-			wchar_t p[MAX_PATH];
-			wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
-			player()->lpPlaylist->AppendFile(p);
+			if (player()->lpPlaylist->Count > bCnt) {
+				if ((ac == 0) || (bCnt == 0)) {
+					player()->ChangePlaylistIndex(bCnt, false);
+					player()->Play();
+				}
+				player()->lpWndBrowser->Close();
+			}
+			player()->lpPlaylist->RebuildShuffle();
 		}
-		if (player()->lpPlaylist->Count > bCnt) {
-			if ((ac == 0) || (bCnt == 0)) {
-				player()->ChangePlaylistIndex(bCnt, false);
-				player()->Play();
+
+		if ((ac == 2) || (ac == 3)) {
+			if (ac == 2) {
+				player()->lpPlaylist->Clear();
 			}
+			int bCnt = player()->lpPlaylist->Count;
+			if (player()->lpConfig->cf.AddSubdirs) {
+				player()->lpPlaylist->AppendDirectoryRecursive(player()->lpConfig->cf.sMediaPath);
+			} else {
+				player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
+			}
+
+			if ((player()->lpPlaylist->Count > bCnt)) {
+				if ((ac == 2) || (bCnt==0)) {
+					if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
+						player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
+					} else {
+						player()->ChangePlaylistIndex(bCnt, false);
+					}
+					player()->Play();
+				}
+			}
+			player()->lpPlaylist->RebuildShuffle();
 			player()->lpWndBrowser->Close();
 		}
-		player()->lpPlaylist->RebuildShuffle();
-	}
-
-	if ((ac == 2) || (ac == 3)) {
-		if (ac == 2) {
-			player()->lpPlaylist->Clear();
-		}
-		int bCnt = player()->lpPlaylist->Count;
-		if (player()->lpConfig->cf.AddSubdirs) {
-			player()->lpPlaylist->AppendDirectoryRecursive(player()->lpConfig->cf.sMediaPath);
-		} else {
-			player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
-		}
-
-		if ((player()->lpPlaylist->Count > bCnt)) {
-			if ((ac == 2) || (bCnt==0)) {
-				if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
-					player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
-				} else {
-					player()->ChangePlaylistIndex(bCnt, false);
-				}
-				player()->Play();
-			}
-		}
-		player()->lpPlaylist->RebuildShuffle();
-		player()->lpWndBrowser->Close();
 	}
 }
 
@@ -454,6 +494,8 @@ int CBrMedia::MsgProc(int uMsg) {
 				ListDirFiles(player()->lpConfig->cf.sMediaPath);
 			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
 				DoAction(player()->lpConfig->cf.DefBrowserAction);
+			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_LISTS) {
+				DoAction(0); // Add and play
 			}
 		}
 

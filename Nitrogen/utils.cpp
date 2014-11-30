@@ -602,6 +602,13 @@ void SecsToTime(LPWSTR lpOut, int secs) {
 	wsprintf(lpOut, L"%02i:%02i", mn, sc);
 }
 
+void removeEndline(LPWSTR str){
+	int k=wcslen(str)-1;
+	while (k>=0 && (str[k]==L'\r' || str[k]==L'\n')) {
+		str[k]=0;
+		k--;
+	}
+}
 // Functions based on http://social.msdn.microsoft.com/forums/en-US/vssmartdevicesnative/thread/7b0a31a8-82f1-4bb8-84bc-53032ca82c72/
 
 HINSTANCE g_hHookApiDLL = NULL;

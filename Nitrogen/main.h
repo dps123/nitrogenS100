@@ -194,6 +194,7 @@ HFONT		CreateFont(int fSize, int fWeight, bool draft);
 
 int			strCompare(LPWSTR s1, LPWSTR s2);
 LPWSTR		strCopy(LPWSTR src);
+void		removeEndline(LPWSTR str);
 bool		strExtract(LPWSTR lpOut, LPWSTR src, int ch);
 void		SecsToTime(LPWSTR lpOut, int secs);
 

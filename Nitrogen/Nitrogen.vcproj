@@ -454,6 +454,10 @@
 					RelativePath=".\cwndmain.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\StudioFile.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -483,6 +487,10 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\StudioFile.h"
 				>
 			</File>
 		</Filter>

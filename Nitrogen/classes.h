@@ -147,6 +147,7 @@ class CBrMedia {
 		~CBrMedia();
 		WBRLIST ListMedia, ListPlaylist;
 		int DirCount;
+		int PlsCount;
 		bool Show();
 		void ListPlaylistItems();
 		void ListDirFiles(LPWSTR path);
@@ -387,6 +388,9 @@ class CPlaylist {
 		void FreeData();
 		void AppendSearch(LPWSTR search);
 		void Sort(int start, int end);	
+		bool LoadFromFileNPL(LPWSTR cFileName);
+		bool LoadFromFilePLS(LPWSTR cFileName);
+		bool LoadFromFileM3U(LPWSTR cFileName);
 	public:
 		void ReadSongDuration();
 		wchar_t IndexAlbumArtFilename[MAX_PATH];
@@ -504,6 +508,9 @@ class CNtPlayer {
 
 		int ExtCount;
 		WEXTSTR * ExtNames;
+
+		int ExtPlsCount;
+		WEXTSTR * ExtPlsNames;
 
 		bool KeyLockSupport;
 		bool KeysLocked;
