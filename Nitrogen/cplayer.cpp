@@ -398,7 +398,7 @@ void CNtPlayer::ChangePlaylistIndex(int newIndex, bool relative) {
 		musicCode++;
 	}
 
-	if (lpConfig->cf.WriteSongRegistry) {
+	if (lpConfig->cf.WriteSongRegistry && diskWaitFlag<0) {
 	
 		HKEY hKey;
 		if (RegCreateKeyExW(HKEY_LOCAL_MACHINE, L"System\\State\\Nitrogen", 0, NULL, REG_OPTION_NON_VOLATILE, 0, NULL, &hKey, NULL) == ERROR_SUCCESS) {
@@ -599,6 +599,7 @@ CNtPlayer::~CNtPlayer() {
 	lang_destroy();
 
 	delete [] ExtNames;
+	delete [] ExtPlsNames;
 }
 
 VOID CALLBACK DiskWaitTimerProc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime) {
