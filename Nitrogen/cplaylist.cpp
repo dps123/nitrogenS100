@@ -332,35 +332,7 @@ bool CPlaylist::LoadFromFileNPL(LPWSTR cFileName) {
 
 bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 
-
 	CStudioFile* file = new CStudioFile;
-
-	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
-		free(file);
-		return false;
-	}
-
-	Count = 0;
-
-	wchar_t buf[MAX_PATH];
-	char cbuf[MAX_PATH];
-	do {
-		file->ReadString(cbuf,MAX_PATH);
-		mbstowcs(buf,cbuf,MAX_PATH);
-		if (wcsncmp(buf,L"File",4)==0) {
-			Count++;
-		}
-	} while(!file->isEOF());
-	free(file);
-
-	//wsprintf(buf,L"Playlist Count = %d",Count);
-	//MessageBox(player()->lpWndBrowser->hWnd, buf, _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
-
-	if (Count == 0) {
-		return true;
-	}
-
-	file = new CStudioFile;
 
 	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
 		free(file);
@@ -371,59 +343,36 @@ bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 	ExtractFilePath(dirName, cFileName);
 
 	Data = new PLAYLISTENTRY[Count];
+	wchar_t buf[MAX_PATH];
+	wchar_t FileName[MAX_PATH];
+	char cbuf[MAX_PATH];
 
-	int i=0;
 	do {
 		file->ReadString(cbuf,MAX_PATH);
-		mbstowcs(buf,cbuf,MAX_PATH);
+		MultiByteToWideChar(CP_UTF8, 0, cbuf, -1, buf, MAX_PATH);
+		removeEndline(buf);
 		if (wcsncmp(buf,L"File",4)==0) {
-			removeEndline(buf);
 			int k=4;
-			while (buf[k]!=L'='){
+			while (buf[k]!=L'=' && buf[k]!=0){
 				k++;
 			}
-			k++;
+			if (buf[k]!=0) k++;
 			if (buf[k]!=L'\\') {
-				wsprintf(Data[i].FileName, L"%s%s", dirName, &buf[k]);
+				wsprintf(FileName, L"%s%s", dirName, &buf[k]);
 			} else {
-				wcscpy(Data[i].FileName, &buf[k]);
+				wcscpy(FileName, &buf[k]);
 			}
-			i++;
+			AppendFile(FileName);
 		}
 	} while(!file->isEOF());
 
 	free(file);
 	return true;
 }
+
 bool CPlaylist::LoadFromFileM3U(LPWSTR cFileName) {
+
 	CStudioFile* file = new CStudioFile;
-
-	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
-		free(file);
-		return false;
-	}
-
-	Count = 0;
-
-	wchar_t buf[MAX_PATH];
-	char cbuf[MAX_PATH];
-	do {
-		file->ReadString(cbuf,MAX_PATH);
-		mbstowcs(buf,cbuf,MAX_PATH);
-		if (wcslen(buf)>0 && buf[0]!=L'#') {
-			Count++;
-		}
-	} while(!file->isEOF());
-	free(file);
-
-	//wsprintf(buf,L"Playlist Count = %d",Count);
-	//MessageBox(player()->lpWndBrowser->hWnd, buf, _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
-
-	if (Count == 0) {
-		return true;
-	}
-
-	file = new CStudioFile;
 
 	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
 		free(file);
@@ -435,18 +384,21 @@ bool CPlaylist::LoadFromFileM3U(LPWSTR cFileName) {
 
 	Data = new PLAYLISTENTRY[Count];
 
-	int i=0;
+	wchar_t buf[MAX_PATH];
+	wchar_t FileName[MAX_PATH];
+	char cbuf[MAX_PATH];
+
 	do {
 		file->ReadString(cbuf,MAX_PATH);
-		mbstowcs(buf,cbuf,MAX_PATH);
-		if (buf[0]!=L'#') {
-			removeEndline(buf);
+		MultiByteToWideChar(CP_UTF8, 0, cbuf, -1, buf, MAX_PATH);
+		removeEndline(buf);
+		if (wcslen(buf)>0 && buf[0]!=L'#') {
 			if (buf[0]!=L'\\') {
-				wsprintf(Data[i].FileName, L"%s%s", dirName, buf);
+				wsprintf(FileName, L"%s%s", dirName, buf);
 			} else {
-				wcscpy(Data[i].FileName, buf);
+				wcscpy(FileName, buf);
 			}
-			i++;
+			AppendFile(FileName);
 		}
 	} while(!file->isEOF());
 
@@ -469,7 +421,7 @@ bool CPlaylist::LoadFromFile(LPWSTR cFileName) {
 			player()->diskWaitFlag=-1;
 			return false;
 		}
-	} else if (CheckFileExt(cFileName, L".m3u")){
+	} else if (CheckFileExt(cFileName, L".m3u")|| CheckFileExt(cFileName, L".m3u8")){
 		if (!LoadFromFileM3U(cFileName)) {
 			player()->diskWaitFlag=-1;
 			return false;
@@ -559,7 +511,7 @@ void CPlaylist::AppendSearch(LPWSTR search) {
 			do {
 				wsprintf(buf[Count+i].FileName, L"%s%s", lpPath, findData.cFileName);
 				buf[Count+i].ShuffleIndex = 0;
-			i++;
+				i++;
 			} while (FindNextFile(fileHandle, &findData));
 	
 			FindClose(fileHandle);

@@ -266,68 +266,56 @@ bool CBrMedia::Show() {
 }
 
 void CBrMedia::DoAction(int ac) {
-	// Open Playlist
-	if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_LISTS) { 
-		wchar_t p[MAX_PATH];
-		wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
-		if (player()->lpPlaylist->LoadFromFile(p)) {
-			player()->ChangePlaylistIndex(0, false);
-			player()->Play();
-			player()->lpWndBrowser->Close();
-			player()->lpPlaylist->RebuildShuffle();
-		}		
-	} else {
-		// Open music files or directories
-		if (((ac == 0) || (ac == 1)) && (ListMedia.ItemIndex >= 0)) {
-			int bCnt = player()->lpPlaylist->Count;
-			if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_DIRECTORY) {
-				wchar_t p[MAX_PATH];
-				wsprintf(p, L"%s%s\\", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
-				if (player()->lpConfig->cf.AddSubdirs) {
-					player()->lpPlaylist->AppendDirectoryRecursive(p);
-				} else {
-					player()->lpPlaylist->AppendDirectory(p);
-				}
-			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
-				wchar_t p[MAX_PATH];
-				wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
-				player()->lpPlaylist->AppendFile(p);
-			}
-			if (player()->lpPlaylist->Count > bCnt) {
-				if ((ac == 0) || (bCnt == 0)) {
-					player()->ChangePlaylistIndex(bCnt, false);
-					player()->Play();
-				}
-				player()->lpWndBrowser->Close();
-			}
-			player()->lpPlaylist->RebuildShuffle();
-		}
-
-		if ((ac == 2) || (ac == 3)) {
-			if (ac == 2) {
-				player()->lpPlaylist->Clear();
-			}
-			int bCnt = player()->lpPlaylist->Count;
+	if (((ac == 0) || (ac == 1)) && (ListMedia.ItemIndex >= 0)) {
+		int bCnt = player()->lpPlaylist->Count;
+		if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_DIRECTORY) {
+			wchar_t p[MAX_PATH];
+			wsprintf(p, L"%s%s\\", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
 			if (player()->lpConfig->cf.AddSubdirs) {
-				player()->lpPlaylist->AppendDirectoryRecursive(player()->lpConfig->cf.sMediaPath);
+				player()->lpPlaylist->AppendDirectoryRecursive(p);
 			} else {
-				player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
+				player()->lpPlaylist->AppendDirectory(p);
 			}
-
-			if ((player()->lpPlaylist->Count > bCnt)) {
-				if ((ac == 2) || (bCnt==0)) {
-					if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
-						player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
-					} else {
-						player()->ChangePlaylistIndex(bCnt, false);
-					}
-					player()->Play();
-				}
+		} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
+			wchar_t p[MAX_PATH];
+			wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
+			player()->lpPlaylist->AppendFile(p);
+		}
+		if (player()->lpPlaylist->Count > bCnt) {
+			if ((ac == 0) || (bCnt == 0)) {
+				player()->ChangePlaylistIndex(bCnt, false);
+				player()->Play();
 			}
-			player()->lpPlaylist->RebuildShuffle();
 			player()->lpWndBrowser->Close();
 		}
+		player()->lpPlaylist->RebuildShuffle();
 	}
+
+	if ((ac == 2) || (ac == 3)) {
+		if (ac == 2) {
+			player()->lpPlaylist->Clear();
+		}
+		int bCnt = player()->lpPlaylist->Count;
+		if (player()->lpConfig->cf.AddSubdirs) {
+			player()->lpPlaylist->AppendDirectoryRecursive(player()->lpConfig->cf.sMediaPath);
+		} else {
+			player()->lpPlaylist->AppendDirectory(player()->lpConfig->cf.sMediaPath);
+		}
+
+		if ((player()->lpPlaylist->Count > bCnt)) {
+			if ((ac == 2) || (bCnt==0)) {
+				if ((ListMedia.ItemIndex >= 0) && (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE)) {
+					player()->ChangePlaylistIndex(bCnt+ListMedia.ItemIndex-DirCount, false);
+				} else if (bCnt==0){
+					player()->ChangePlaylistIndex(bCnt, false);
+				}
+				player()->Play();
+			}
+		}
+		player()->lpPlaylist->RebuildShuffle();
+		player()->lpWndBrowser->Close();
+	}
+
 }
 
 void CBrMedia::BackToPlaylistMode() {
@@ -495,7 +483,14 @@ int CBrMedia::MsgProc(int uMsg) {
 			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_SSONGFILE) {
 				DoAction(player()->lpConfig->cf.DefBrowserAction);
 			} else if (ListMedia.Data[ListMedia.ItemIndex].IconIndex == ICO_LISTS) {
-				DoAction(0); // Add and play
+				wchar_t p[MAX_PATH];
+				wsprintf(p, L"%s%s", player()->lpConfig->cf.sMediaPath, ListMedia.Data[ListMedia.ItemIndex].Text);
+				if (player()->lpPlaylist->LoadFromFile(p)) {
+					player()->ChangePlaylistIndex(0, false);
+					player()->Play();
+					player()->lpWndBrowser->Close();
+					player()->lpPlaylist->RebuildShuffle();
+				}		
 			}
 		}
 

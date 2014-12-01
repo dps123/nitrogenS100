@@ -90,7 +90,8 @@ CNtPlayer::CNtPlayer(HINSTANCE hInst, LPWSTR cmdLine) {
 	ExtPlsNames = new WEXTSTR[ExtPlsCount];
 	wcscpy(ExtPlsNames[0], L"pls");
 	wcscpy(ExtPlsNames[1], L"m3u");
-	wcscpy(ExtPlsNames[2], L"npl");
+	wcscpy(ExtPlsNames[2], L"m3u8");
+	wcscpy(ExtPlsNames[3], L"npl");
 
 	PlayingSongDuration = 0;
 	PlayingSongPos = 0;
