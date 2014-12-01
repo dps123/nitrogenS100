@@ -353,8 +353,8 @@ bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 	} while(!file->isEOF());
 	free(file);
 
-	wsprintf(buf,L"Playlist Count = %d",Count);
-	MessageBox(player()->lpWndBrowser->hWnd, buf, _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
+	//wsprintf(buf,L"Playlist Count = %d",Count);
+	//MessageBox(player()->lpWndBrowser->hWnd, buf, _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
 
 	if (Count == 0) {
 		return true;
@@ -383,7 +383,6 @@ bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 				k++;
 			}
 			k++;
-	MessageBox(player()->lpWndBrowser->hWnd, &buf[k], _str(STR_MESSAGE), MB_ICONINFORMATION|MB_OK|MB_SETFOREGROUND);
 			if (buf[k]!=L'\\') {
 				wsprintf(Data[i].FileName, L"%s%s", dirName, &buf[k]);
 			} else {
