@@ -153,6 +153,7 @@ class CBrMedia {
 		void ListDirFiles(LPWSTR path);
 		int MsgProc(int uMsg);
 		void StartMenuNames();
+		void SetMode(CBRMODE m);
 	private:
 		void BackToPlaylistMode();
 		int MoveToFrom;

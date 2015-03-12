@@ -249,6 +249,10 @@ void CBrMedia::ListDirFiles(LPWSTR path) {
 	ListMedia.ItemIndex = -1;
 }
 
+void CBrMedia::SetMode(CBRMODE m) {
+	Mode = m;
+}
+
 bool CBrMedia::Show() {
 	Showing = true;
 

@@ -683,6 +683,7 @@ void CWndMain::OnButtonClick(int command) {
 			break;
 
 		case ICMD_CLOSE:
+			// S100 back
 			player()->PostS100Message(WM_S100_PLATFORM, 2, 0);
 			player()->PostS100Message(WM_S100_PLATFORM, 81, 0);
 			//SendMessage(hWnd, WM_CLOSE, 0, 0);
@@ -724,19 +725,29 @@ void CWndMain::OnButtonClick(int command) {
 			break;
 
 		case ICMD_MINIMIZE:
+			// S100 main menu
 			player()->PostS100Message(WM_S100_PLATFORM, 2, 0);
 			player()->PostS100Message(WM_S100_PLATFORM, 80, 0);
 			//ShowWindow(hWnd, SW_MINIMIZE);
 			break;
 
-		case ICMD_BLANKSCREEN:
+		case ICMD_BLANKSCREEN:			
 			//player()->ToggleDisplay(VideoPowerOff);
-			break;
-
-		case ICMD_PLAYLIST:
+			//Open file browser
 			if (player()->diskWaitFlag>0) {
 				KillTimer(hWnd, TMR_DISKWAIT);
 			}
+			player()->diskWaitFlag=-1;
+			player()->lpBrMedia->SetMode(CBR_MEDIA);
+			player()->lpBrMedia->Show();
+			break;
+
+		case ICMD_PLAYLIST:
+			// Open playlist
+			if (player()->diskWaitFlag>0) {
+				KillTimer(hWnd, TMR_DISKWAIT);
+			}
+			player()->lpBrMedia->SetMode(CBR_PLAYLIST);
 			player()->diskWaitFlag=-1;
 			player()->lpBrMedia->Show();
 			break;
