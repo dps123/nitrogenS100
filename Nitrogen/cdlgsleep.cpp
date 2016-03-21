@@ -4,7 +4,7 @@
 CDlgSleep::CDlgSleep() {
 	
 	SleepActive = false;
-
+	SleepMins = 0;
 }
 
 void CDlgSleep::Execute() {

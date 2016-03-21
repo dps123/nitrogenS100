@@ -14,6 +14,7 @@ CNtPlayer::CNtPlayer(HINSTANCE hInst, LPWSTR cmdLine) {
 	diskWaitFlag=0;
 	firstStart=0;
 	KeysLocked = false;
+	KeyLockSupport = false;
 
 	// Loads skins/files directories
 	SkinsPath[0] = 0;

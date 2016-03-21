@@ -181,6 +181,13 @@ CWndEqualizer::CWndEqualizer() {
 	
 	Menu.Count = 0;
 	lpMenu = NULL;
+	
+	preset = NULL;
+	presetCount = 0;
+	eqClick = 0;
+	selBand = 0;
+	ShowingMenu = false;
+	
 }
 
 void CWndEqualizer::OnPaint(HDC hDC) {

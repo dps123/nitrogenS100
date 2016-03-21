@@ -8,6 +8,12 @@ CMenu::CMenu(HWND owner, MENUPROC msgproc) {
 	MsgProc = msgproc;
 	menuBG.Exists = false;
 
+	PY = 0;
+	OldPY = 0;
+	Dragging = false;
+	ClickMode = 0;
+	OldOffY = 0;
+
 }
 
 void CMenu::UpdateMenuSize() {

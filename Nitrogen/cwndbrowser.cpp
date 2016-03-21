@@ -4,7 +4,27 @@
 CWndBrowser::CWndBrowser() {
 
 	lpMenu = NULL;
-
+	MsgProc = NULL;
+	lpList = NULL;
+	lpIconMode = 0;
+	saUp = false;
+	longTap = false;
+	hapAcc = 0.0;
+	hapFPY = 0.0;
+	hapDir = false;
+	hapEnabled = false;
+	hapTick = 0;
+	hapYCord = 0;
+	disableClick = false;
+	ClickMode = 0;
+	dragging = false;
+	oldOffY = 0;
+	oldPY = 0;
+	pY = 0;
+	keyProc = false;
+	ShowingMenu = false;
+	
+	
 }
 
 void CWndBrowser::CreateMenuBar(LPWSTR lText, LPWSTR rText) {

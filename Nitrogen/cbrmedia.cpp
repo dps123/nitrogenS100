@@ -48,6 +48,9 @@ void CBrMedia::StartMenuNames() {
 }
 
 CBrMedia::CBrMedia() {
+	DirCount = 0;
+	PlsCount = 0;
+	MoveToFrom = 0;
 	
 	Showing = false;
 

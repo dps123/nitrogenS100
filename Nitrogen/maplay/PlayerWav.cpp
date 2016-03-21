@@ -150,7 +150,7 @@ retry:
 	return TRUE;
 fail:
 	m_Reader.Close();
-	if (pwfxSrc) delete pwfxSrc;
+	if (pwfxSrc) delete [] pwfxSrc;
 	return FALSE;
 }
 
@@ -226,12 +226,12 @@ BOOL CPlayer::WavIsValidFile(LPCTSTR pszFile)
 		goto error;
 #endif
 
-	delete pwfxSrc;
+	delete [] pwfxSrc;
 	reader.Close();
 	return TRUE;
 
 error:
-	if (pwfxSrc) delete pwfxSrc;
+	if (pwfxSrc) delete [] pwfxSrc;
 	reader.Close();
 	return FALSE;
 }

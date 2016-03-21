@@ -17,6 +17,32 @@ CWndMain::CWndMain() {
 	lpMenu = NULL;
 	inCallPlaying = false;
 
+		Showing = false;
+		ShowingMenu = false;
+		paintMode = 0;
+		memset(paintCommand, 0, 40);
+		
+		memset(keyPressed, 0, 256);
+
+		ClickIndex = 0;
+		ClickMode = 0;
+		ClickProp = 0;
+		SecFncCmd = 0;
+		SecFnc = false;
+
+		deltaRot = 0.0;
+		lastCursorRot = 0.0;
+		oldCursorRot = 0.0;
+		oldPlaylistIndex = 0;
+		oldVol = 0;
+		oldPos = 0;
+		oldWheelRot = 0.0;
+		wheelClickHalf = 0;
+		wheelTurns = 0;
+
+		indRepaint = 0;
+
+
 }
 
 void CWndMain::CreateMenuBar(LPWSTR lText, LPWSTR rText) {

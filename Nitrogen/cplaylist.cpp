@@ -335,7 +335,7 @@ bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 	CStudioFile* file = new CStudioFile;
 
 	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
-		free(file);
+		delete file;
 		return false;
 	}
 
@@ -366,7 +366,7 @@ bool CPlaylist::LoadFromFilePLS(LPWSTR cFileName) {
 		}
 	} while(!file->isEOF());
 
-	free(file);
+	delete file;
 	return true;
 }
 
@@ -375,7 +375,7 @@ bool CPlaylist::LoadFromFileM3U(LPWSTR cFileName) {
 	CStudioFile* file = new CStudioFile;
 
 	if (!file->Open(cFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0)) {
-		free(file);
+		delete file;
 		return false;
 	}
 
@@ -402,7 +402,7 @@ bool CPlaylist::LoadFromFileM3U(LPWSTR cFileName) {
 		}
 	} while(!file->isEOF());
 
-	free(file);
+	delete file;
 	return true;
 
 
